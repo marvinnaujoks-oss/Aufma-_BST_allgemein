@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Datenaufmaß Brandschutztüren und -tore</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --accent: #1f6feb;
+      --accent-soft: #e0ecff;
+      --border: #d0d7de;
+      --text: #24292f;
+      --muted: #57606a;
+      --danger: #d73a49;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 1.5rem;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    h1 {
+      margin: 0 0 0.25rem;
+      font-size: 1.6rem;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      font-size: 0.9rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem 1rem;
+    }
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.4rem 0.45rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 60px;
+      resize: vertical;
+    }
+
+    .checkbox-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: 0.2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      width: auto;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    button {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    button.secondary {
+      background: var(--accent-soft);
+      border-color: transparent;
+      color: var(--accent);
+    }
+
+    button.danger {
+      border-color: var(--danger);
+      color: var(--danger);
+      background: #fff5f5;
+    }
+
+    button.icon-only {
+      border-radius: 999px;
+      width: 26px;
+      height: 26px;
+      padding: 0;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    /* Accordion */
+    .accordion-item {
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #fff;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+    }
+
+    .accordion-header {
+      width: 100%;
+      border: none;
+      padding: 0.55rem 0.8rem;
+      background: #f1f4fb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .accordion-header span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .accordion-header .badge {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 0.05rem 0.5rem;
+      font-size: 0.7rem;
+    }
+
+    .accordion-body {
+      padding: 0.75rem 0.9rem 0.85rem;
+      display: none;
+    }
+
+    .accordion-item.open .accordion-body {
+      display: block;
+    }
+
+    .accordion-item.open .accordion-header {
+      border-bottom: 1px solid var(--border);
+      background: #e8f0ff;
+    }
+
+    .items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-top: 0.5rem;
+    }
+
+    .item-card {
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.6rem 0.7rem;
+      background: #fafbff;
+      position: relative;
+    }
+
+    .item-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .item-title-row strong {
+      color: var(--text);
+    }
+
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 0.55rem 0.7rem;
+    }
+
+    .item-grid-wide {
+      grid-template-columns: 1.1fr 1.1fr 0.6fr 0.8fr 0.8fr;
+    }
+
+    .item-grid-bodendichtung-top {
+      grid-template-columns: 0.7fr 0.9fr 0.7fr 0.7fr 0.5fr 0.4fr;
+    }
+
+    .item-grid-bodendichtung-measure {
+      grid-template-columns: 0.7fr 0.7fr 0.7fr 0.7fr 0.7fr;
+    }
+
+    .item-grid-zarge {
+      grid-template-columns: 0.6fr 0.8fr 0.6fr 0.6fr 0.6fr 0.6fr;
+    }
+
+    .item-grid-einsteck {
+      grid-template-columns: 0.6fr 0.8fr 0.6fr 0.6fr 0.6fr 0.6fr;
+    }
+
+    .item-grid-brandtuere-main {
+      grid-template-columns: 0.7fr 0.6fr 0.7fr 0.7fr 0.7fr;
+    }
+
+    .item-grid-brandtuere-maße {
+      grid-template-columns: 0.6fr 0.6fr 0.6fr 0.6fr 0.6fr;
+    }
+
+    .item-grid-brandtuere-glas {
+      grid-template-columns: 0.7fr 0.7fr 0.7fr 0.7fr;
+    }
+
+    .item-grid-footer {
+      grid-template-columns: 0.7fr 0.6fr 0.95fr;
+    }
+
+    .footer-note {
+      margin-top: 0.3rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+      .card,
+      .accordion-item {
+        box-shadow: none;
+      }
+      .toolbar {
+        display: none;
+      }
+      button {
+        display: none !important;
+      }
+      .accordion-body {
+        display: block !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header style="margin-bottom:0.75rem;">
+    <h1>Übersicht Datenaufmaß Brandschutztüren und -tore</h1>
+    <div class="subtitle">
+      Einheitliches Aufmaßformular für absenkbare Bodendichtungen, Zargendichtungen,
+      Einsteckschlösser, Brandschutztüren und Brandschutzschiebetore.
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <button class="primary" id="printBtn">🖨️ Drucken / PDF erstellen</button>
+    <button class="secondary" id="expandAllBtn">▾ Alle Bereiche öffnen</button>
+    <button class="secondary" id="collapseAllBtn">▴ Alle Bereiche schließen</button>
+  </div>
+
+  <!-- Allgemeine Angaben -->
+  <section class="card">
+    <h2>Allgemeine Angaben</h2>
+    <div class="grid" style="margin-top:0.5rem;">
+      <div>
+        <label for="kunde">Kunde / Firma</label>
+        <input type="text" id="kunde" placeholder="z. B. Muster GmbH" />
+      </div>
+      <div>
+        <label for="objekt">Objekt / Standort</label>
+        <input
+          type="text"
+          id="objekt"
+          placeholder="z. B. Werk 1, Halle A"
+        />
+      </div>
+      <div>
+        <label for="adresse">Adresse</label>
+        <input
+          type="text"
+          id="adresse"
+          placeholder="Straße, Haus-Nr., PLZ, Ort"
+        />
+      </div>
+      <div>
+        <label for="begehungDatum">Datum der Begehung</label>
+        <input type="date" id="begehungDatum" />
+      </div>
+      <div>
+        <label for="begehungDurch">Begehung durchgeführt durch</label>
+        <input type="text" id="begehungDurch" placeholder="Name" />
+      </div>
+    </div>
+    <div style="margin-top:0.6rem;">
+      <label for="allgBemerkung">Allgemeine Bemerkungen</label>
+      <textarea
+        id="allgBemerkung"
+        placeholder="Besonderheiten zum Objekt, Zugang, Sicherheitsvorgaben …"
+      ></textarea>
+    </div>
+  </section>
+
+  <!-- Absenkbare Bodendichtung -->
+  <section class="accordion-item" data-section="bodendichtung">
+    <button class="accordion-header">
+      <span>Absenkbare Bodendichtung</span>
+      <span class="badge"><span class="count">0</span> Positionen</span>
+    </button>
+    <div class="accordion-body">
+      <button class="secondary add-item" data-type="bodendichtung">
+        ➕ Position absenkbare Bodendichtung
+      </button>
+      <div class="items-list" id="bodendichtungList"></div>
+      <div class="footer-note">
+        Hinweis: Für mehrere identische Bodendichtungen bitte die Anzahl
+        entsprechend setzen – für abweichende Ausführungen eine neue Position
+        anlegen.
+      </div>
+    </div>
+  </section>
+
+  <!-- Zargendichtung -->
+  <section class="accordion-item" data-section="zarge">
+    <button class="accordion-header">
+      <span>Zargendichtung</span>
+      <span class="badge"><span class="count">0</span> Positionen</span>
+    </button>
+    <div class="accordion-body">
+      <button class="secondary add-item" data-type="zarge">
+        ➕ Position Zargendichtung
+      </button>
+      <div class="items-list" id="zargeList"></div>
+    </div>
+  </section>
+
+  <!-- Einsteckschloss -->
+  <section class="accordion-item" data-section="einsteck">
+    <button class="accordion-header">
+      <span>Einsteckschloss</span>
+      <span class="badge"><span class="count">0</span> Positionen</span>
+    </button>
+    <div class="accordion-body">
+      <button class="secondary add-item" data-type="einsteck">
+        ➕ Position Einsteckschloss
+      </button>
+      <div class="items-list" id="einsteckList"></div>
+    </div>
+  </section>
+
+  <!-- Brandschutztür -->
+  <section class="accordion-item" data-section="brandtuere">
+    <button class="accordion-header">
+      <span>Brandschutztür</span>
+      <span class="badge"><span class="count">0</span> Positionen</span>
+    </button>
+    <div class="accordion-body">
+      <button class="secondary add-item" data-type="brandtuere">
+        ➕ Position Brandschutztür
+      </button>
+      <div class="items-list" id="brandtuereList"></div>
+      <div class="footer-note">
+        Tipp: Wenn mehrere Türen technisch identisch sind, können deren
+        ID-Nummern gemeinsam in einer Position erfasst und die Anzahl
+        entsprechend angegeben werden.
+      </div>
+    </div>
+  </section>
+
+  <!-- Brandschutzschiebetor -->
+  <section class="accordion-item" data-section="schiebetor">
+    <button class="accordion-header">
+      <span>Brandschutzschiebetor</span>
+      <span class="badge"><span class="count">0</span> Positionen</span>
+    </button>
+    <div class="accordion-body">
+      <button class="secondary add-item" data-type="schiebetor">
+        ➕ Position Brandschutzschiebetor
+      </button>
+      <div class="items-list" id="schiebetorList"></div>
+    </div>
+  </section>
+
+  <!-- Template-Container (wird per JS geklont) -->
+  <template id="tpl-bodendichtung">
+    <div class="item-card">
+      <div class="item-title-row">
+        <strong>Absenkbare Bodendichtung – Position <span class="pos-index"></span></strong>
+        <button class="icon-only danger remove-item" title="Position löschen">
+          ✕
+        </button>
+      </div>
+
+      <div class="item-grid item-grid-bodendichtung-top">
+        <div>
+          <label>ID-Nummer Tür</label>
+          <input type="text" name="idNummer" />
+        </div>
+        <div>
+          <label>Türtyp</label>
+          <select name="tuerTyp">
+            <option value="">Bitte wählen …</option>
+            <option>Brandschutztür m. Rauchschutz – Stahlblech</option>
+            <option>Brandschutztür m. Rauchschutz – Rohrrahmen</option>
+            <option>Brandschutztür m. Rauchschutz – Holz</option>
+            <option>Reine Rauchschutztür</option>
+          </select>
+        </div>
+        <div>
+          <label>Bauart</label>
+          <select name="bauart">
+            <option value="">Bitte wählen …</option>
+            <option>einflügelig</option>
+            <option>zweiflügelig</option>
+          </select>
+        </div>
+        <div>
+          <label>Hersteller</label>
+          <input type="text" name="hersteller" />
+        </div>
+        <div>
+          <label>Zulassungs-Nr.</label>
+          <input type="text" name="zulassung" />
+        </div>
+        <div>
+          <label>Baujahr</label>
+          <input type="text" name="baujahr" />
+        </div>
+      </div>
+
+      <div class="item-grid item-grid-bodendichtung-measure" style="margin-top:0.45rem;">
+        <div>
+          <label>Flügel</label>
+          <select name="fluegel">
+            <option value="">Bitte wählen …</option>
+            <option>Gangflügel</option>
+            <option>Standflügel</option>
+            <option>Gang- und Standflügel</option>
+          </select>
+        </div>
+        <div>
+          <label>Nut-Höhe [mm]</label>
+          <input type="number" name="nutHoehe" />
+        </div>
+        <div>
+          <label>Nut-Breite [mm]</label>
+          <input type="number" name="nutBreite" />
+        </div>
+        <div>
+          <label>Länge Dichtung [mm]</label>
+          <input type="number" name="laenge" />
+        </div>
+        <div>
+          <label>Bohrung Treibriegel</label>
+          <select name="bohrung">
+            <option value="">Bitte wählen …</option>
+            <option>ja</option>
+            <option>nein</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="item-grid" style="margin-top:0.45rem;">
+        <div>
+          <label>Auslösung</label>
+          <select name="ausloesung">
+            <option value="">Bitte wählen …</option>
+            <option>Schlossseite</option>
+            <option>Bandseite</option>
+            <option>beidseitig</option>
+          </select>
+        </div>
+        <div>
+          <label>Anzahl</label>
+          <input type="number" name="anzahl" min="1" value="1" />
+        </div>
+        <div>
+          <label>Foto-Dateiname</label>
+          <input type="text" name="fotoName" placeholder="z. B. IMG_1234.jpg" />
+          <label class="checkbox-row">
+            <input type="checkbox" name="fotoGemacht" /> Foto gemacht
+          </label>
+        </div>
+      </div>
+
+      <div style="margin-top:0.45rem;">
+        <label>Bemerkung</label>
+        <textarea name="bemerkung"></textarea>
+      </div>
+    </div>
+  </template>
+
+  <template id="tpl-zarge">
+    <div class="item-card">
+      <div class="item-title-row">
+        <strong>Zargendichtung – Position <span class="pos-index"></span></strong>
+        <button class="icon-only danger remove-item" title="Position löschen">
+          ✕
+        </button>
+      </div>
+
+      <div class="item-grid item-grid-zarge">
+        <div>
+          <label>ID-Nummer Tür</label>
+          <input type="text" name="idNummer" />
+        </div>
+        <div>
+          <label>Hersteller</label>
+          <input type="text" name="hersteller" />
+        </div>
+        <div>
+          <label>Zulassungs-Nr.</label>
+          <input type="text" name="zulassung" />
+        </div>
+        <div>
+          <label>Typ</label>
+          <input type="text" name="typ" />
+        </div>
+        <div>
+          <label>Baujahr</label>
+          <input type="text" name="baujahr" />
+        </div>
+        <div>
+          <label>Türtyp</label>
+          <select name="tuerTyp">
+            <option value="">Bitte wählen …</option>
+            <option>Stahlblechtür</option>
+            <option>Rohrrahmentür</option>
+            <option>Holztür</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="item-grid" style="margin-top:0.45rem;">
+        <div>
+          <label>Flügelanzahl</label>
+          <select name="fluegel">
+            <option value="">Bitte wählen …</option>
+            <option>einflügelig</option>
+            <option>zweiflügelig</option>
+          </select>
+        </div>
+        <div>
+          <label>Anzahl</label>
+          <input type="number" name="anzahl" min="1" value="1" />
+        </div>
+        <div>
+          <label>Foto-Dateiname</label>
+          <input type="text" name="fotoName" />
+          <label class="checkbox-row">
+            <input type="checkbox" name="fotoGemacht" /> Foto gemacht
+          </label>
+        </div>
+      </div>
+
+      <div style="margin-top:0.45rem;">
+        <label>Bemerkung</label>
+        <textarea name="bemerkung"></textarea>
+      </div>
+    </div>
+  </template>
+
+  <template id="tpl-einsteck">
+    <div class="item-card">
+      <div class="item-title-row">
+        <strong>Einsteckschloss – Position <span class="pos-index"></span></strong>
+        <button class="icon-only danger remove-item" title="Position löschen">
+          ✕
+        </button>
+      </div>
+
+      <div class="item-grid item-grid-einsteck">
+        <div>
+          <label>ID-Nummer Tür</label>
+          <input type="text" name="idNummer" />
+        </div>
+        <div>
+          <label>Hersteller / Zulassung</label>
+          <input
+            type="text"
+            name="zulassung"
+            placeholder="Hersteller, Zulassungs-Nr., Typ"
+          />
+        </div>
+        <div>
+          <label>Dornmaß [mm]</label>
+          <input type="number" name="dornmass" />
+        </div>
+        <div>
+          <label>Stulbmaß [mm]</label>
+          <input type="number" name="stulbmass" />
+        </div>
+        <div>
+          <label>Türblattstärke [mm]</label>
+          <input type="number" name="blattstaerke" />
+        </div>
+        <div>
+          <label>DIN-Richtung</label>
+          <select name="din">
+            <option value="">Bitte wählen …</option>
+            <option>DIN links</option>
+            <option>DIN rechts</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="item-grid" style="margin-top:0.45rem;">
+        <div>
+          <label>Anzahl</label>
+          <input type="number" name="anzahl" min="1" value="1" />
+        </div>
+        <div>
+          <label>Foto-Dateiname</label>
+          <input type="text" name="fotoName" />
+          <label class="checkbox-row">
+            <input type="checkbox" name="fotoGemacht" /> Foto gemacht
+          </label>
+        </div>
+      </div>
+
+      <div style="margin-top:0.45rem;">
+        <label>Bemerkung</label>
+        <textarea name="bemerkung"></textarea>
+      </div>
+    </div>
+  </template>
+
+  <template id="tpl-brandtuere">
+    <div class="item-card">
+      <div class="item-title-row">
+        <strong>Brandschutztür – Position <span class="pos-index"></span></strong>
+        <button class="icon-only danger remove-item" title="Position löschen">
+          ✕
+        </button>
+      </div>
+
+      <div class="item-grid item-grid-brandtuere-main">
+        <div>
+          <label>ID-Nummern Tür(en)</label>
+          <input
+            type="text"
+            name="idNummern"
+            placeholder="z. B. T-01, T-02"
+          />
+        </div>
+        <div>
+          <label>Einsatzbereich</label>
+          <select name="einsatz">
+            <option value="">Bitte wählen …</option>
+            <option>Innenbereich</option>
+            <option>Außenbereich</option>
+          </select>
+        </div>
+        <div>
+          <label>Art</label>
+          <select name="art">
+            <option value="">Bitte wählen …</option>
+            <option>Neubau / neue Öffnung</option>
+            <option>Ersatz für bestehende Tür</option>
+          </select>
+        </div>
+        <div>
+          <label>Hersteller</label>
+          <input type="text" name="hersteller" />
+        </div>
+        <div>
+          <label>Zulassungs-Nr. / Typ / Baujahr</label>
+          <input
+            type="text"
+            name="zulassung"
+            placeholder="z. B. Z-6.20-..., Typ, Baujahr"
+          />
+        </div>
+      </div>
+
+      <div class="item-grid item-grid-brandtuere-maße" style="margin-top:0.45rem;">
+        <div>
+          <label>Wandart</label>
+          <select name="wandart">
+            <option value="">Bitte wählen …</option>
+            <option>Mauerwerk</option>
+            <option>Beton</option>
+            <option>Leichtbauwand</option>
+            <option>Porenbeton</option>
+            <option>Kalksandstein</option>
+            <option>Sonstige</option>
+          </select>
+        </div>
+        <div>
+          <label>Lichte Breite [mm]</label>
+          <input type="number" name="breite" />
+        </div>
+        <div>
+          <label>Lichte Höhe [mm]</label>
+          <input type="number" name="hoehe" />
+        </div>
+        <div>
+          <label>Wandstärke [mm]</label>
+          <input type="number" name="wandstaerke" />
+        </div>
+        <div>
+          <label>Flügelanzahl</label>
+          <select name="fluegel">
+            <option value="">Bitte wählen …</option>
+            <option>einflügelig</option>
+            <option>zweiflügelig</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="item-grid item-grid-brandtuere-maße" style="margin-top:0.45rem;">
+        <div>
+          <label>Teilung Gang / Stand [%]</label>
+          <input
+            type="text"
+            name="teilung"
+            placeholder="z. B. 80 / 20"
+          />
+        </div>
+        <div>
+          <label>DIN-Richtung</label>
+          <select name="din">
+            <option value="">Bitte wählen …</option>
+            <option>DIN links</option>
+            <option>DIN rechts</option>
+          </select>
+        </div>
+        <div>
+          <label>Anzahl Türen</label>
+          <input type="number" name="anzahl" min="1" value="1" />
+        </div>
+        <div>
+          <label>Türmaterial</label>
+          <select name="material">
+            <option value="">Bitte wählen …</option>
+            <option>Stahlblech</option>
+            <option>Rohrrahmen Stahl</option>
+            <option>Rohrrahmen Aluminium</option>
+            <option>Holztür</option>
+            <option>Sonstige</option>
+          </select>
+        </div>
+        <div>
+          <label>Anforderung</label>
+          <select name="anforderung">
+            <option value="">Bitte wählen …</option>
+            <option>T30</option>
+            <option>T90</option>
+            <option>Rauchschutztür</option>
+            <option>T30-RS</option>
+            <option>T90-RS</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="item-grid item-grid-brandtuere-maße" style="margin-top:0.45rem;">
+        <div>
+          <label>Zargenart</label>
+          <select name="zarge">
+            <option value="">Bitte wählen …</option>
+            <option>Eckzarge</option>
+            <option>Eckzarge mit Gegenzarge</option>
+            <option>Umfassungszarge</option>
+            <option>Blockzarge</option>
+          </select>
+        </div>
+        <div>
+          <label>Schließung</label>
+          <select name="schliessung">
+            <option value="">Bitte wählen …</option>
+            <option>Obentürschließer</option>
+            <option>Federband</option>
+            <option>Feststellanlage</option>
+          </select>
+        </div>
+        <div>
+          <label>Schließung – gewünschter Typ</label>
+          <input
+            type="text"
+            name="schliessungTyp"
+            placeholder="z. B. TS 5000 E ISM"
+          />
+        </div>
+        <div>
+          <label>Farbe</label>
+          <input type="text" name="farbe" placeholder="z. B. RAL 9016" />
+        </div>
+        <div>
+          <label>Foto-Dateiname</label>
+          <input type="text" name="fotoName" />
+          <label class="checkbox-row">
+            <input type="checkbox" name="fotoGemacht" /> Foto gemacht
+          </label>
+        </div>
+      </div>
+
+      <div class="item-grid item-grid-brandtuere-glas" style="margin-top:0.45rem;">
+        <div>
+          <label>Verglasung vorhanden?</label>
+          <select name="verglasung">
+            <option value="">Bitte wählen …</option>
+            <option>nein</option>
+            <option>ja – Gangflügel</option>
+            <option>ja – Standflügel</option>
+            <option>ja – beide Flügel</option>
+          </select>
+        </div>
+        <div>
+          <label>Glasmaß Gangflügel B×H [mm]</label>
+          <input
+            type="text"
+            name="glasGang"
+            placeholder="z. B. 300 × 800"
+          />
+        </div>
+        <div>
+          <label>Glasmaß Standflügel B×H [mm]</label>
+          <input
+            type="text"
+            name="glasStand"
+            placeholder="z. B. 300 × 800"
+          />
+        </div>
+        <div>
+          <label>Weitere Besonderheiten</label>
+          <input
+            type="text"
+            name="besonderheiten"
+            placeholder="z. B. Oberlicht, Seitenteil …"
+          />
+        </div>
+      </div>
+
+      <div style="margin-top:0.45rem;">
+        <label>Bemerkung</label>
+        <textarea name="bemerkung"></textarea>
+      </div>
+    </div>
+  </template>
+
+  <template id="tpl-schiebetor">
+    <div class="item-card">
+      <div class="item-title-row">
+        <strong>Brandschutzschiebetor – Position <span class="pos-index"></span></strong>
+        <button class="icon-only danger remove-item" title="Position löschen">
+          ✕
+        </button>
+      </div>
+
+      <div class="item-grid item-grid-brandtuere-main">
+        <div>
+          <label>ID-Nummer Tor</label>
+          <input type="text" name="idNummern" />
+        </div>
+        <div>
+          <label>Einsatzbereich</label>
+          <select name="einsatz">
+            <option value="">Bitte wählen …</option>
+            <option>Innenbereich</option>
+            <option>Außenbereich</option>
+          </select>
+        </div>
+        <div>
+          <label>Art</label>
+          <select name="art">
+            <option value="">Bitte wählen …</option>
+            <option>Neubau / neue Öffnung</option>
+            <option>Ersatz für bestehendes Tor</option>
+          </select>
+        </div>
+        <div>
+          <label>Hersteller</label>
+          <input type="text" name="hersteller" />
+        </div>
+        <div>
+          <label>Zulassungs-Nr. / Typ / Baujahr</label>
+          <input type="text" name="zulassung" />
+        </div>
+      </div>
+
+      <div class="item-grid item-grid-brandtuere-maße" style="margin-top:0.45rem;">
+        <div>
+          <label>Lichte Breite [mm]</label>
+          <input type="number" name="breite" />
+        </div>
+        <div>
+          <label>Lichte Höhe [mm]</label>
+          <input type="number" name="hoehe" />
+        </div>
+        <div>
+          <label>Deckenhöhe [mm]</label>
+          <input
+            type="number"
+            name="deckenhoehe"
+            placeholder="Fußboden bis UK Decke"
+          />
+        </div>
+        <div>
+          <label>Wandart</label>
+          <select name="wandart">
+            <option value="">Bitte wählen …</option>
+            <option>Mauerwerk</option>
+            <option>Beton</option>
+            <option>Leichtbauwand</option>
+            <option>Porenbeton</option>
+            <option>Kalksandstein</option>
+            <option>Sonstige</option>
+          </select>
+        </div>
+        <div>
+          <label>Anforderung</label>
+          <select name="anforderung">
+            <option value="">Bitte wählen …</option>
+            <option>T30</option>
+            <option>T90</option>
+            <option>Rauchschutz</option>
+            <option>T30-RS</option>
+            <option>T90-RS</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="item-grid item-grid-brandtuere-maße" style="margin-top:0.45rem;">
+        <div>
+          <label>Aufschieberichtung</label>
+          <select name="aufschub">
+            <option value="">Bitte wählen …</option>
+            <option>nach links aufschiebend</option>
+            <option>nach rechts aufschiebend</option>
+            <option>von oben ablaufend / Falltor</option>
+          </select>
+        </div>
+        <div>
+          <label>Anzahl Tore</label>
+          <input type="number" name="anzahl" min="1" value="1" />
+        </div>
+        <div>
+          <label>Farbe</label>
+          <input type="text" name="farbe" placeholder="z. B. RAL 7035" />
+        </div>
+        <div>
+          <label>Foto-Dateiname</label>
+          <input type="text" name="fotoName" />
+          <label class="checkbox-row">
+            <input type="checkbox" name="fotoGemacht" /> Foto gemacht
+          </label>
+        </div>
+      </div>
+
+      <div style="margin-top:0.45rem;">
+        <label>Bemerkung</label>
+        <textarea name="bemerkung"></textarea>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    (function () {
+      const sectionConfig = {
+        bodendichtung: {
+          listId: "bodendichtungList",
+          tplId: "tpl-bodendichtung",
+        },
+        zarge: { listId: "zargeList", tplId: "tpl-zarge" },
+        einsteck: { listId: "einsteckList", tplId: "tpl-einsteck" },
+        brandtuere: { listId: "brandtuereList", tplId: "tpl-brandtuere" },
+        schiebetor: { listId: "schiebetorList", tplId: "tpl-schiebetor" },
+      };
+
+      function updateCounts() {
+        document
+          .querySelectorAll(".accordion-item")
+          .forEach((accordion) => {
+            const type = accordion.dataset.section;
+            const cfg = sectionConfig[type];
+            if (!cfg) return;
+            const list = document.getElementById(cfg.listId);
+            const count = list ? list.children.length : 0;
+            const badgeSpan = accordion.querySelector(".badge .count");
+            if (badgeSpan) badgeSpan.textContent = String(count);
+          });
+      }
+
+      function addItem(type) {
+        const cfg = sectionConfig[type];
+        if (!cfg) return;
+        const list = document.getElementById(cfg.listId);
+        const tpl = document.getElementById(cfg.tplId);
+        const clone = tpl.content.cloneNode(true);
+        const card = clone.querySelector(".item-card");
+        const idx = list.children.length + 1;
+        card.dataset.index = idx;
+        const idxSpans = card.querySelectorAll(".pos-index");
+        idxSpans.forEach((sp) => (sp.textContent = idx));
+        list.appendChild(clone);
+        updateCounts();
+      }
+
+      function removeItem(btn) {
+        const card = btn.closest(".item-card");
+        const list = card.parentElement;
+        card.remove();
+        Array.from(list.children).forEach((child, i) => {
+          child.dataset.index = i + 1;
+          const spans = child.querySelectorAll(".pos-index");
+          spans.forEach((sp) => (sp.textContent = i + 1));
+        });
+        updateCounts();
+      }
+
+      // Accordion toggle
+      document.querySelectorAll(".accordion-header").forEach((hdr) => {
+        hdr.addEventListener("click", (e) => {
+          // nicht auslösen, wenn Button in Header geklickt wird (haben wir hier aber aktuell nicht)
+          if (e.target.tagName === "BUTTON") return;
+          const item = hdr.closest(".accordion-item");
+          item.classList.toggle("open");
+        });
+      });
+
+      // Buttons hinzufügen
+      document
+        .querySelectorAll(".add-item")
+        .forEach((btn) =>
+          btn.addEventListener("click", () => addItem(btn.dataset.type))
+        );
+
+      // Delegation für Löschen-Buttons
+      document.body.addEventListener("click", (e) => {
+        const rmBtn = e.target.closest(".remove-item");
+        if (rmBtn) {
+          removeItem(rmBtn);
+        }
+      });
+
+      // Toolbar
+      document.getElementById("printBtn").addEventListener("click", () => {
+        window.print();
+      });
+
+      document
+        .getElementById("expandAllBtn")
+        .addEventListener("click", () => {
+          document
+            .querySelectorAll(".accordion-item")
+            .forEach((a) => a.classList.add("open"));
+        });
+
+      document
+        .getElementById("collapseAllBtn")
+        .addEventListener("click", () => {
+          document
+            .querySelectorAll(".accordion-item")
+            .forEach((a) => a.classList.remove("open"));
+        });
+
+      // Startzustand: alle zu
+      updateCounts();
+    })();
+  </script>
+</body>
+</html>
